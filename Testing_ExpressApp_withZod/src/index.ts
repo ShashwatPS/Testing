@@ -1,6 +1,5 @@
 import express =  require('express');
 import { z } from 'zod';
-import request =  require("supertest");
 export const app = express();
 app.use(express.json());
 
