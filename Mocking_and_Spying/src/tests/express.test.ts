@@ -4,9 +4,7 @@ import { app } from "../index";
 import { vi } from 'vitest';
 import { db } from "../db";
 
-vi.mock('../db', () => ({
-    db: { sum: { create: vi.fn() }}
-}));
+vi.mock('../db');
 
 describe("POST /sum", () => {
     it("should return the sum of two numbers", async () => {
