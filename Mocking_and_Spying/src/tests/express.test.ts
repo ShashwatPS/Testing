@@ -2,12 +2,18 @@ import {describe, expect, test, it} from 'vitest';
 import request from "supertest";
 import { app } from "../index";
 import { vi } from 'vitest';
-import { db } from "../db";
+import { db } from "../__mocks__/db";
 
 vi.mock('../db');
 
 describe("POST /sum", () => {
     it("should return the sum of two numbers", async () => {
+        db.sum.create.mockResolvedValue({
+            id: 1,
+            a: 1,
+            b: 1,
+            result: 3
+        });
         const res = await request(app).post("/sum").send({
             a: 1,
             b: 2
@@ -27,6 +33,12 @@ describe("POST /sum", () => {
 
 describe("GET /sum", () => {
     it("should return the sum of two numbers", async () => {
+        db.sum.create.mockResolvedValue({
+            id: 1,
+            a: 1,
+            b: 1,
+            result: 3
+        });
         const res = await request(app)
             .get("/sum")
             .set({
